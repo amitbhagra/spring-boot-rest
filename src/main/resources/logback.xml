@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/app.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 7 days' worth of history -->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread][%logger{0}] %m%n</pattern>
+        </encoder>
+    </appender>
+    
+<!--     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> -->
+<!-- 		<layout class="ch.qos.logback.classic.PatternLayout"> -->
+<!-- 			<Pattern> -->
+<!-- 				%d{HH:mm:ss.SSS} %-5level [%thread][%logger{0}] %m%n -->
+<!-- 			</Pattern> -->
+<!-- 		</layout> -->
+<!-- 	</appender> -->
+
+    <root level="ERROR">
+        <appender-ref ref="FILE"/>
+    </root>
+    
+    <logger name="com.sample" level="DEBUG"
+		additivity="false">
+		<appender-ref ref="FILE" />
+	</logger>
+</configuration>
