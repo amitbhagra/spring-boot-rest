@@ -1,2 +1,3 @@
 # spring-boot-rest
-Sample Project for Spring Boot Rest  With JWT
+
+This is a sample Spring Boot Project exposing REST URLs in a secure way
