@@ -2,12 +2,13 @@
 
 This is a sample Spring Boot Project exposing REST URLs in a secure way
 
-Environment Required:
+Environment Required:  
 
-Java version "1.8.0_121"
-Gradle "4.0"
+Java version "1.8.0_121"  
+Gradle "4.0"  
 
-Project Setup:
-git clone https://github.com/amitbhagra/spring-boot-rest
-cd spring-boot-rest
-gradle bootRun
+Project Setup:  
+
+git clone https://github.com/amitbhagra/spring-boot-rest  
+cd spring-boot-rest  
+gradle bootRun  
