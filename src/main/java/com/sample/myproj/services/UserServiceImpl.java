@@ -75,18 +75,18 @@ public class UserServiceImpl  implements UserService, UserDetailsService {
 		return user != null ? true : false;
 	}
 
-	@Override
-	public User login(UserDto userDto) throws UsernameNotFoundException {
-		User user = repository.findByContact(userDto.getContact());
-		if (user == null) throw new UsernameNotFoundException("Mobile Number does not exist");
-		
-		if (passwordEncoder.matches(userDto.getPassword(), user.getPassword())) {
-			return user; 
-		} else {
-			throw new UsernameNotFoundException("Invalid password");
-		}
-		
-	}
+//	@Override
+//	public User login(UserDto userDto) throws UsernameNotFoundException {
+//		User user = repository.findByContact(userDto.getContact());
+//		if (user == null) throw new UsernameNotFoundException("Mobile Number does not exist");
+//		
+//		if (passwordEncoder.matches(userDto.getPassword(), user.getPassword())) {
+//			return user; 
+//		} else {
+//			throw new UsernameNotFoundException("Invalid password");
+//		}
+//		
+//	}
 	
 	@Override
 	public User socialLogin(UserDto accountDto)
