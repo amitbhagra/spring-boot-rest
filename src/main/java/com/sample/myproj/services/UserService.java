@@ -12,8 +12,6 @@ public interface UserService {
 	public User registerNewUserAccount(UserDto accountDto)
 			throws DuplicateUserException;
 
-	public User login(UserDto userDto) throws UsernameNotFoundException;
-	
 	public User socialLogin(UserDto userDto);
 
 	public Iterable<User> getUsers();

@@ -30,18 +30,30 @@ public class UserController {
 
 
 	@RequestMapping(value = "/api/users", method = RequestMethod.GET)
-    public @ResponseBody Page<User> getUsers(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam("sort") String sort
-    		, @RequestParam(value = "direction", required = false) String direction) {
-        log.info("inside getUsers");
-        Direction dir = "desc".equals(direction) ? Direction.DESC : Direction.ASC;
-        return userService.getUsersByRole("ROLE_USER", new PageRequest(page, size, dir, sort));
-     }
+	public @ResponseBody Page<User> getUsers(
+			@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "size", required = false) Integer size,
+			@RequestParam(value = "sort", required = false) String sort,
+			@RequestParam(value = "direction", required = false) String direction) {
+
+		Integer pg = page == null ? new Integer(0) : page;
+		Integer sz = size == null ? new Integer(10) : size;
+		String srt = sort == null ? "updated_on" : sort;
+		Direction dir = "desc".equals(direction) ? Direction.DESC
+				: Direction.ASC;
+		log.info("inside getUsers. Page {}, Size {}, Sort {}, Direction {}",
+				pg, sz, srt, dir);
+		return userService.getUsersByRole("ROLE_USER", new PageRequest(pg,
+				sz, dir, srt));
+	}
+	
     
 	@RequestMapping(value = "/api/usersNameContaining", method = RequestMethod.GET)
 	public @ResponseBody Page<User> getUsersByNameContaining(
 			@RequestParam("page") int page, @RequestParam("size") int size,
 			@RequestParam("userName") String userName, @RequestParam("sort") String sort
 			, @RequestParam(value = "direction", required = false) String direction) {
+		//TODO
 		log.info("inside getUsersByNameContaining");
 		Direction dir = "desc".equals(direction) ? Direction.DESC : Direction.ASC;
 		return userService.getUsersByRoleAndNameContaining("ROLE_USER", userName, new PageRequest(
@@ -58,6 +70,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/api/sociallogin", method = RequestMethod.POST)
 	public @ResponseBody User sociallogin(@RequestBody UserDto userDto) {
+		//TODO
 		log.info("Inside social login with username {}", userDto.getUserName());
 		User user = userService.socialLogin(userDto);
 		return user;
@@ -66,6 +79,7 @@ public class UserController {
 	
 	@RequestMapping(value="/api/downloadUsersCSV", method = RequestMethod.GET)
 	public String viewCSV(Model model) throws IOException {
+		//TODO
 		log.info("inside download");
 		Iterable<User> listUsers = userService.getUsers();
 	 

@@ -14,15 +14,15 @@ import com.sample.myproj.entities.User;
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@Query(value = "select * from user u where u.id in (select ua.user_id from user_authority ua where ua.authority_id = (select id from authority where name = ?1)) and u.user_name like CONCAT('%', ?2, '%') \n#pageable\n", 
-	countQuery = "select count(*) from user u where u.id in (select ua.user_id from user_authority ua where ua.authority_id = (select id from authority where name = ?1)) and u.user_name like CONCAT('%', ?2, '%') \n#pageable\n", 
+	@Query(value = "select * from user u where u.id in (select ua.user_id from user_authority ua where ua.authority_id = (select id from authority where name = ?1)) and u.user_name like CONCAT('%', ?2, '%') /*#pageable*/", 
+	countQuery = "select count(*) from user u where u.id in (select ua.user_id from user_authority ua where ua.authority_id = (select id from authority where name = ?1)) and u.user_name like CONCAT('%', ?2, '%') /*#pageable*/", 
 	nativeQuery = true)
 	public Page<User> getUsersByRoleAndNameContaining(String role, String userName, Pageable p);
 
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@Query(value = "select * from user u where u.id in (select ua.user_id from user_authority ua where ua.authority_id = (select id from authority where name = ?1)) \n#pageable\n",
-	countQuery = "select count(*) from user u where u.id in (select ua.user_id from user_authority ua where ua.authority_id = (select id from authority where name = ?1)) \n#pageable\n",
+	@Query(value = "select * from user u where u.id in (select ua.user_id from user_authority ua where ua.authority_id = (select id from authority where name = ?1)) /*#pageable*/",
+	countQuery = "select count(*) from user u where u.id in (select ua.user_id from user_authority ua where ua.authority_id = (select id from authority where name = ?1)) /*#pageable*/",
 	nativeQuery = true)
 	public Page<User> getUsersByRole(String role, Pageable p);
 

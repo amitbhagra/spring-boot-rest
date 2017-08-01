@@ -45,7 +45,7 @@ public class LoginController {
                 )
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        this.logger.info("Auth Succeeded");
+        this.logger.info("Authentication Succeeded");
         // Reload password post-security so we can generate token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
